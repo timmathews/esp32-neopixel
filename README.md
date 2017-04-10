@@ -1,1 +1,1 @@
-# neopixel_esp32
+# Simple HTML Interface for NeoPixels Connected to an ESP32
