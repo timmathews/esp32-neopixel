@@ -5,4 +5,4 @@
 #define MG_TASK_PRIORITY 1
 #define MG_POLL 1000
 
-void mg_task(void *);
+void mg_os_task(void *);
