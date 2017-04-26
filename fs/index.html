@@ -1,66 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Neo Pixel Controller</title>
+    <link rel="stylesheet" href="milligram.min.css">
     <style>
-      html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background:#eee;color:#335}
-      h1{font-size:2em;margin:0 0 0.67em 0;text-align:center;border-bottom:1px inset #335}
-      hr{box-sizing:content-box;height:0;overflow:visible}
-      a{background-color:transparent;-webkit-text-decoration-skip:objects}
-      b,strong{font-weight:inherit}
-      b,strong{font-weight:bolder}
-      small{font-size:80%}
-      img{border-style:none}
-      button,input,optgroup,select,textarea{margin:0}
-      button,input{overflow:visible}
-      button,select{text-transform:none}
-      button,html [type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}
-      button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,
-      [type="submit"]::-moz-focus-inner{border-style:none;padding:0}
-      button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,
-      [type="submit"]:-moz-focusring{outline:1px dotted ButtonText}
-      progress{display:inline-block;vertical-align:baseline}
-      [type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}
-      [type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}
-      ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
-      template{display:none}
-      [hidden]{display:none}
-      body{margin:10px auto;max-width:600px;
-      border:1px solid #446;border-radius:3px;padding:15px 15px 0}
-      .form-group{margin-bottom:15px}
-      label{display:inline-block;max-width:100%;margin-bottom:5px;font-weight:700}
-      .form-control{display:block;width:100%;height:34px;padding:6px 12px;border:1px solid #335;border-radius:4px;
-      -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-      -webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-      -o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-      transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}
-      .btn{color:#335;background-color:#ccd;display:inline-block;padding:6px 12px;margin-bottom:0;
-      text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;border:1px solid #335;
-      border-radius:4px;width:100%;font-weight:700}
+      html { height: 100% }
+      body { min-height: 90% }
+      .sticky {
+        position: absolute;
+        bottom: 0;
+        padding: 0 15px;
+      }
+      .navigation {
+        background: #f4f5f6;
+        border-bottom: .1rem solid #d1d1d1;
+        display: block;
+        height: 5.2rem;
+        left: 0;
+        max-width: 100%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+      }
+      .navigation .navigation-title {
+        display: inline;
+        font-size: 1.6rem;
+        line-height: 5.2rem;
+        padding: 0;
+        text-decoration: none;
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: .6rem 0rem;
+        margin: 0;
+        width: 100%;
+      }
+      input[type="color"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        border: 0.1rem solid #d1d1d1;
+        border-radius: .4rem;
+        box-shadow: none;
+        box-sizing: inherit;
+        height: 3.8rem;
+        padding: .6rem 1.0rem;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
-    <h1>Neo Pixel Controller</h1>
-    <form action="/update" method="post">
-      <div class="form-group">
-        <label>Color:</label>
-        <input type="color" name="color" value="#ff0000" class="form-control">
+    <nav class="navigation">
+      <section class="container">
+        <p class="navigation-title">Neo Pixel Controller</p>
+      </section>
+    </nav>
+    <div class="container" style="padding-top: 5rem">
+      <div class="row">
+        <div class="column column-80 column-offset-10">
+          <form action="/update" method="post">
+            <fieldset>
+              <label>Color</label>
+              <input type="color" name="color" value="#ff0000">
+
+              <label>Brightness</label>
+              <input type="range" min="0" max="100" value="50" />
+
+              <label>Animation</label>
+              <select name="animation">
+                <option value="">Choose...</option>
+                <option value=""></option>
+                <option value="1">Chase</option>
+                <option value="2">Fade</option>
+                <option value="3">Blink</option>
+                <option value="4">Candle</option>
+                <option value="5">Random</option>
+              </select>
+
+              <button class="button-primary" type="submit">Update Light</button>
+
+            </fieldset>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Animation:</label>
-        <select name="animation" class="form-control">
-          <option value="">Choose...</option>
-          <option value=""></option>
-          <option value="1">Chase</option>
-          <option value="2">Fade</option>
-          <option value="3">Blink</option>
-          <option value="4">Candle</option>
-          <option value="5">Random</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn">Update Light</button>
-      </div>
-    </form>
+    </div>
+    <footer class="sticky">
+      <p>&copy; 2017 Pixeless</p>
+    </footer>
   </body>
 </html>
